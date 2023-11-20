@@ -15,19 +15,21 @@ snowflake:
       type: snowflake
       account: "{{ env_var('SNOWFLAKE_SANDBOX_ACCOUNT') }}"
       user: "{{ env_var('SNOWFLAKE_SANDBOX_USER') }}"
-      authenticator: externalbrowser
-      database: analytics
-      warehouse: transforming
-      schema: dbt_winnie
+      password: "{{ env_var('SNOWFLAKE_SANDBOX_PASSWORD') }}"
+      role: "{{ env_var('SNOWFLAKE_SANDBOX_ROLE') }}"
+      database: "{{ env_var('SNOWFLAKE_SANDBOX_DB') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_SANDBOX_WH') }}"
+      schema: "{{ env_var('SNOWFLAKE_SANDBOX_SCHEMA') }}"
       threads: 8
     prod:
       type: snowflake
       account: "{{ env_var('SNOWFLAKE_SANDBOX_ACCOUNT') }}"
       user: "{{ env_var('SNOWFLAKE_SANDBOX_USER') }}"
-      authenticator: externalbrowser
-      database: analytics
-      warehouse: transforming
-      schema: dx_sandbox_prod
+      password: "{{ env_var('SNOWFLAKE_SANDBOX_PASSWORD') }}"
+      role: "{{ env_var('SNOWFLAKE_SANDBOX_ROLE') }}"
+      database: "{{ env_var('SNOWFLAKE_SANDBOX_DB') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_SANDBOX_WH') }}"
+      schema: "{{ env_var('SNOWFLAKE_SANDBOX_SCHEMA') }}"
       threads: 8
 
 postgres:
