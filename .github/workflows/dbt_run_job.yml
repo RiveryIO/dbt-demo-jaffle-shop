@@ -2,6 +2,7 @@ name: schedule_dbt_job
 
 on:
   repository_dispatch:
+    types: [dbt_core_demo_rivery]
   workflow_dispatch:
 
 env:
