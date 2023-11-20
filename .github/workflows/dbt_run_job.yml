@@ -1,0 +1,41 @@
+name: schedule_dbt_job
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+
+env:
+  DBT_PROFILES_DIR: ./
+  
+  SNOWFLAKE_SANDBOX_ACCOUNT: ${{ secrets.SNOWFLAKE_SANDBOX_ACCOUNT }}
+  SNOWFLAKE_SANDBOX_USER: ${{ secrets.SNOWFLAKE_SANDBOX_USER }}
+  SNOWFLAKE_SANDBOX_PASSWORD: ${{ secrets.SNOWFLAKE_SANDBOX_PASSWORD }}
+  SNOWFLAKE_SANDBOX_ROLE: SOLUTIONS_ENGINEER
+  SNOWFLAKE_SANDBOX_DB: DEMO_DB
+  SNOWFLAKE_SANDBOX_SCHEMA: DBT_DEMO
+  SNOWFLAKE_SANDBOX_WH: SOLUTIONS_WH
+
+jobs:
+  schedule_dbt_job:
+    name: schedule_dbt_job
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out
+      uses: actions/checkout@master
+
+    - uses: actions/setup-python@v1
+      with:
+        python-version: "3.7.x"
+
+    - name: Install dependencies
+      run: |
+        pip install dbt-snowflake
+        dbt deps
+
+    # dbt related commands here - run use --target prod/dev to run for specific environments
+    - name: Run dbt models
+      run: dbt run
+
+    - name: Test dbt models
+      run: dbt test
