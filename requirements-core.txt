@@ -1,4 +1,10 @@
 dbt-metricflow[snowflake]~=0.3.0
 pre-commit~=3.0.4
-sqlfluff~=2.3.1
+sqlfluff~=4.2.0
 sqlfluff-templater-dbt~=2.3.1
+cryptography>=50.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
+protobuf>=5.29.6 # not directly required, pinned by Snyk to avoid a vulnerability
+pyopenssl>=26.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
+snowflake-connector-python>=4.7.3 # not directly required, pinned by Snyk to avoid a vulnerability
+sqlparse>=0.6.0 # not directly required, pinned by Snyk to avoid a vulnerability
+urllib3>=2.7.0 # not directly required, pinned by Snyk to avoid a vulnerability
